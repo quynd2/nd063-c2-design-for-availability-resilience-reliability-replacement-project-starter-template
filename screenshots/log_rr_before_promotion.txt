@@ -1,0 +1,38 @@
+[root@ip-10-2-10-19 ec2-user]# mysql -h secondarydb.ctckk0lefpuv.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use cars;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [cars]> show tables;
++----------------+
+| Tables_in_cars |
++----------------+
+| colors         |
++----------------+
+1 row in set (0.01 sec)
+
+MySQL [cars]> insert into colors(id, hex) values (4,"3454ff");
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [cars]> select * from cars;
+ERROR 1146 (42S02): Table 'cars.cars' doesn't exist
+MySQL [cars]> select * from colors;
++------+---------+
+| id   | hex     |
++------+---------+
+|    1 | #324234 |
+|    2 | #000000 |
+|    3 | #ffffff |
++------+---------+
+3 rows in set (0.00 sec)
+
+MySQL [cars]>
